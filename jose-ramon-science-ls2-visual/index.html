@@ -35,9 +35,7 @@ function retryMisses(){if(!lastMistakes.length) return; round=shuffle(lastMistak
 function confirmExit(){if(confirm('Exit this quiz?')) show('home');}
 function textMistakes(){return mistakes.length ? mistakes.map((m,n)=>`${n+1}. [${m.topic}] ${m.question}
 Your answer: ${m.chosen}
-Correct answer: ${m.correct}`).join('
-
-') : 'No mistakes — perfect score!';}
+Correct answer: ${m.correct}`).join('\n\n') : 'No mistakes — perfect score!';}
 async function copyMistakes(){try{await navigator.clipboard.writeText(textMistakes()); alert('Mistakes copied.');}catch(e){alert('Copy failed on this browser.');}}
 function downloadMistakes(){const blob=new Blob([textMistakes()],{type:'text/plain'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='JR_Science_LS2_visual_mistakes.txt'; a.click(); setTimeout(()=>URL.revokeObjectURL(url),1000);}
 $('pool').textContent=`${BANK.length} questions · mixed text + image questions · based only on the supplied LS2 PDFs`;
